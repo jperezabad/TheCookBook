@@ -6,6 +6,7 @@ services:
     ports:
       - "5000:5000"
     environment:
+      SECRET_KEY: 'you_will_never_guess'
       APP_ENV: "prod"
       APP_DEBUG: "False"
       DB_HOST: mongodb

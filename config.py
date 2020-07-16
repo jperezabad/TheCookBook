@@ -7,7 +7,7 @@ class Config:
     # General Config
     ENV = os.environ.get("APP_ENV", "development")
     DEBUG = os.environ.get("APP_DEBUG", True)
-    SECRET_KEY= <your_secret_key>
+    SECRET_KEY= os.environ.get("SECRET_KEY", "you_will_never_guess")
 
     # Database
     DB_NAME = os.environ.get("DB_NAME", 'cookbook')
