@@ -1,0 +1,45 @@
+<html>
+    <head>
+      <title>Register | TheCookBook</title>
+      <link rel="shortcut icon" href="{{ url_for('static', filename='icon/favicon.ico') }}">
+      <link rel="stylesheet" href="{{ url_for('static',filename='css/login.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    </head>
+    <body>
+        
+        <form class="vertical" action="" method="post" novalidate>
+            
+            <img id="chefIcon" src="/static/icon/favicon.ico" >
+            
+            <h1>Create a new account</h1>
+            
+            {{ form.hidden_tag() }}
+
+            {{ form.username(placeholder=form.username.description) }}
+            {% for error in form.username.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+
+            {{ form.email(placeholder=form.email.description) }}
+            {% for error in form.email.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+
+            {{ form.password(placeholder=form.password.description) }}
+            {% for error in form.password.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+
+            {{ form.password2(placeholder=form.password2.description) }}
+            {% for error in form.password2.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+            
+            {{ form.submit() }}
+
+            <p>Already have an account? <a href="/login">Login now!</a></p>
+
+        </form>
+    
+    </body>
+</html>

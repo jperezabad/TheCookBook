@@ -1,0 +1,119 @@
+/* CSS FOR THE ENTIRE SITE */
+
+body {
+    min-height: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    display: flex;
+    flex-direction: column;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+a {
+    color: #1aa4bc;
+}
+
+.content {
+    height: 100%;
+    flex-grow: 1;
+    align-items: stretch;
+}
+
+.page-content{
+    padding: 2em;
+    flex-grow: 1;
+    text-align: center;
+    overflow: auto;
+    min-width: 36em;
+}
+
+input[type='submit'], .button {
+    margin: 1em 0;
+    background-color:  #1aa4bc;
+    border-color: #1aa4bc;
+    box-shadow: 0 2px #999;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+
+.warning {
+    width: fit-content;
+    margin: 0 auto 1em auto;
+    background-color: #ffab99;
+    padding: 1em 4em;
+    border-radius: 0.5em;
+    color: black;
+}
+
+/* CSS FOR THE NAVBAR */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    width: fit-content;
+    height: 100%;
+    align-items: stretch;
+    min-width: 18em;
+    background-color: #1abc83;
+    text-align: center;
+}
+
+.navItems {
+    flex: 1 1 auto;
+}
+
+.navItem {
+    padding: 1.5em 0;
+    font-size: large;
+    text-decoration: none;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.navItem:hover {
+    background-color: #75d6b4;
+}
+
+.lastItem {
+    border-top: 1px solid white;
+}
+
+.navItemInner {
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 2em;
+}
+
+.navIcon {
+    width: 2em;
+    height: 2em;
+}
+
+.navBrand {
+    align-items: center;
+}
+
+.textBrand {
+    margin: 0.5em;
+    padding: 0;
+}
+
+.navBrandIcon {
+    width: 4em;
+    height: 4em;
+}

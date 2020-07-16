@@ -1,0 +1,35 @@
+<html itemscope itemtype="http://schema.org/Article">
+    <head>
+        <title>Login | TheCookBook</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='icon/favicon.ico') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    </head>
+    <body>            
+
+        <form class="vertical" action="" method="post" novalidate>
+            
+            <img id="chefIcon" src="/static/icon/favicon.ico" >
+            
+            <h1>TheCookBook</h1>
+            
+            {{ form.hidden_tag() }}
+
+            {{ form.email(placeholder=form.email.description) }}
+            {% for error in form.email.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+
+            {{ form.password(placeholder=form.password.description) }}
+            {% for error in form.password.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+            
+            {{ form.submit() }}
+
+            <p>Don't have an account yet? <a href="/register">Register now!</a></p>
+
+        </form>
+
+    </body>
+</html>

@@ -1,0 +1,136 @@
+body {
+    margin: 0px;
+}
+
+.form {
+    width: 80%;
+    margin: auto;
+    padding: 0 2em;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.form .horizontal {
+    margin-bottom: 1em;
+}
+
+fieldset {
+    padding: 2em;
+    margin-top: 2em;
+    border-color: #1abc83;
+    border-radius: 5px;
+}
+
+legend {
+	font-size: 1.5em;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.number {
+	background: #1abc83;
+	color: #fff;
+	height: 2em;
+	width: 2em;
+	line-height: 2em;
+	margin-right: 1em;
+	text-align: center;
+    border-radius: 15px 15px 15px 0px;
+}
+
+input {
+    font-family: Georgia, "Times New Roman", Times, serif;
+	background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 5px;
+	font-size: 15px;
+    margin: 0;
+    margin-left: 1em;
+	outline: 0;
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	background-color:  #d2d9dd;
+	color:black;
+	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+}
+
+.fa-hourglass-half {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.fa-user {
+    margin-left: 2em;
+}
+
+.fa-image, .fa-tag {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#imgurUpload {
+    background-color: white;
+}
+
+#image {
+    display: none;
+    height: 300px;
+    width: 450px;
+    object-fit: cover;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+#canvas {
+    display: none;
+}
+
+.fa-video, .fa-bread-slice {
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.fa-utensils {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.fa-info {
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+#video {
+    display: none;
+    width: 450px;
+    height: 300px;
+    border: none;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+.fa-times {
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+.quantity, .measure {
+    width: 20%;
+}
+
+#container-submit {
+    align-content: center;
+}
+
+#submit {
+    width: 30%;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-size:1.2em;
+}

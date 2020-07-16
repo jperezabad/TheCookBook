@@ -1,0 +1,90 @@
+.emptyMessage {
+    margin: 3em auto;
+}
+
+.searchForm {
+    margin-bottom: 1em;
+    align-items: stretch;
+}
+
+.searchForm input[type='text'] {
+    flex: 1 1 auto;
+    margin: 0;
+    border: 1px solid #1aa4bc;
+    border-radius: 4px;
+    font-size: 1em;
+    padding: 1em;
+    margin-right: 0.5em;
+}
+
+.searchForm input[type='submit'] {
+    padding-right: 2em;
+    padding-left: 2em;
+    margin: 0;
+}
+
+.resultInfo {
+    text-align: start;
+    margin-bottom: 1em;
+}
+
+.recipes {
+    flex: 2 1 auto;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.recipe{
+    width: 20em;
+    display: flex;
+    flex-direction: column;
+    margin: 1em 1%;
+    box-shadow: 0 4px 8px 0 #6C98CF;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.3s;
+    background-color: #d1f1e6;
+}
+
+.recipe:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.recipe:active{
+    transform: translateY(5px);
+}
+
+.recipeImage {
+    max-width: 100%;
+    height: auto;
+    object-fit: fill;
+}
+
+.recipeInfo {
+    height: fit-content;
+    align-items: center;
+    padding: 1em;
+}
+
+.recipeName {
+    font-size: 2em;
+}
+
+.recipeTimeDiv {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5em;
+}
+
+.recipeTime{
+    margin-left: 1em;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}

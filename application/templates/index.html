@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+<!-- HEAD -->
+{% block head %}
+<script src="https://kit.fontawesome.com/f8c45113b8.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+<!-- NAV ITEMS -->
+{% block specificNavItems %}
+<a class="navItem" href="/addRecipe">
+    <div class="horizontal navItemInner">
+        Add recipe
+        <img class="navIcon" src="/static/icon/kitchen.png" >
+    </div>
+</a>
+{% endblock %}
+
+<!-- PAGE CONTENT -->
+{% block page_content %}
+
+
+    <form class="searchForm horizontal" action="/" method="get" novalidate>
+                    
+        {{ form.search(value=searchWord, placeholder=form.search.description) }}
+        
+        {{ form.submit() }}
+
+    </form>
+
+    {% if recipes|length == 0 %}
+
+        <div class="emptyMessage">
+            There are no recipes yet. <a href="/addRecipe">Why don't you add one?</a>
+        </div>
+
+    {% else %}
+
+        <div class="resultInfo">
+            Showing {{recipes_per_page*(page-1)+1}}
+            {% if recipes_per_page*page > count %}
+            - {{count}}
+            {% else %}
+            - {{recipes_per_page*page}}
+            {% endif %}                
+            of {{count}} recipes
+        </div>
+
+        <div class="recipes horizontal">
+
+            {% for recipe in recipes %}
+            <div class="recipe" onclick="window.location='/recipe/{{recipe.id}}'">
+                {% if recipe.image is not none %}
+                <img class="recipeImage" src="{{recipe.image}}"/>
+                {% endif %}
+                <div class="recipeInfo vertical">
+                    <div class="recipeName">{{recipe.title}}</div>
+                    <div class="recipeTimeDiv"><i class="fas fa-hourglass-half"></i><div class="recipeTime">{{recipe.time}} min</div></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {% if page > 1 %}
+            <button class="button" onclick="window.location='?page={{page - 1}}'">Previous</button>
+            {% else %}
+            <button class="button" style="visibility: hidden;">Previous</button>
+            {% endif %}
+            Page {{page}}
+            {% if maxPage > page %}
+            <button class="button" onclick="window.location='?page={{page + 1}}'">Next</button>
+            {% else %}
+            <button class="button" style="visibility: hidden;">Next</button>
+            {% endif %}
+        </div>
+
+    {% endif %}
+
+{% endblock %}

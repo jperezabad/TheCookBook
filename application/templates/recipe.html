@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+<!-- HEAD -->
+{% block head %}
+<title>{{recipe.title}}</title>
+<script src="https://kit.fontawesome.com/f8c45113b8.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/recipe.css') }}">
+{% endblock %}
+
+<!-- NAV ITEMS -->
+{% block specificNavItems %}
+<a class="navItem" href="{{recipe.id}}/edit">
+    <div class="horizontal navItemInner">
+        Edit recipe
+        <img class="navIcon" src="/static/icon/kitchen.png" >
+    </div>
+</a>
+<a class="navItem" href="{{recipe.id}}/download" target="_blank">
+    <div class="horizontal navItemInner">
+        Download recipe
+        <img class="navIcon" src="/static/icon/kitchen.png" >
+    </div>
+</a>
+{% endblock %}
+
+<!-- PAGE CONTENT -->
+{% block page_content %}
+
+    <div class="recipe">
+
+        <div class="recipeUploadInfo">
+            Uploaded by {{recipe.user.name}} on {{recipe.date.strftime('%e %B %Y') }}
+        </div>
+
+        <h1>{{recipe.title}}</h1>
+
+        {% if recipe.tags|length > 0%}
+            <div class="horizontal recipeTags">
+                {% for tag in recipe.tags %} 
+                <div class="recipeTagDiv horizontal"><i class="fas fa-tag"></i><div class="tagName">{{tag}}</div></div>
+                {% endfor %} 
+            </div>
+        {% endif %}
+
+        <div class="container horizontal">
+            
+            <div class="vertical ingredients">   
+                
+                <h2>Ingredientes para {{recipe.people}} personas</h2>
+            
+                {% for ingredient in recipe.ingredients %}
+                <div class="horizontal">
+                    <i class="fas fa-bread-slice"></i>
+                    <div class="element">
+                        {% if ingredient.quantity is not none%}{{ingredient.quantity}} {%endif%}
+                        {% if ingredient.measure is not none%}{{ingredient.measure}} de {%endif%} 
+                        {{ingredient.name}}
+                    </div>
+                </div>
+                {% endfor %} 
+            </div>
+
+            {% if recipe.image is not none%}
+            <div class="imageContainer">
+                <img class="recipeImage" src="{{recipe.image}}"/>
+            </div>
+            {% endif %}
+            
+        </div>
+
+        <h2>Elaboración</h2>
+        <div class="vertical">
+            {% for step in recipe.steps %} 
+            <div class="horizontal">
+                <i class="fas fa-utensils"></i>
+                <div class="element">{{step}}</div>
+            </div>
+            {% endfor %} 
+
+        </div>
+
+        {% if recipe.info|length > 0 %}
+            <h2>Información adicional</h2>
+            <div class="vertical">
+                {% for info in recipe.info %} 
+                <div class="horizontal">
+                    <i class="fas fa-info"></i>
+                    <div class="element">{{info}}</div>
+                </div>
+                {% endfor %} 
+            </div>
+        {% endif %}
+
+        {% if recipe.video is not none %}
+            <iframe src="https://www.youtube.com/embed/{{recipe.video}}"></iframe>
+        {% endif %}
+        </div>
+
+    </div>
+
+{% endblock %}

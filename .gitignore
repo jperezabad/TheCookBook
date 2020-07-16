@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.vscode/
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+#mongo
+/db

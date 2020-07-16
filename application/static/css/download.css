@@ -1,0 +1,89 @@
+body {
+    margin: 0px;
+}
+
+.iconTitle {
+    margin: auto;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin-bottom: 1em;
+    text-align: start;
+}
+
+.content {
+    padding: 1em 3em 3em 3em;
+    display: flex;
+    flex-direction: column;
+    font: 18px/25px sourcesans,sans-serif;
+}
+
+.content h1 {
+    text-align: center;
+}
+
+.contributor {
+    flex-direction: row-reverse;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.recipeUploadInfo img {
+    margin: 0 0.1em 0 0;
+}
+
+.recipeTags {
+    justify-content: center;
+}
+
+.recipeTagDiv {
+    align-items: center;
+    margin-right: 1em;
+    margin-bottom: 0;
+}
+
+.tagName {
+    margin-left: 0.3em;
+}
+
+.container {
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ingredients {
+    width: fit-content;
+    flex: 1 0 auto;
+}
+
+.imageContainer {
+    flex: 1 1 auto;
+    margin: auto 0 auto 1.5em;
+    min-width: 15em;
+    max-width: 20em;
+}
+
+.recipeImage {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin: auto;
+}
+
+#videoLink {
+    margin: 1em 0;
+}
+
+.element {
+    margin-left: 1em;
+}

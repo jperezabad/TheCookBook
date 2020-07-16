@@ -1,0 +1,31 @@
+body {
+    background-color: #75d6b4;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 25em;
+    height: fit-content;
+    margin: 8em auto;
+    background-color: white;
+    padding: 2em 6em;
+    border-radius: 1em;
+    align-items: center;
+}
+
+img {
+    width: 5em;
+    height: 5em;
+    margin: auto 0.5em;
+}
+
+input[type='text'], input[type='password']{
+    width: 18em;
+    line-height: 2em;
+    padding: 0.25em;
+    font-size: 1em;
+    margin: 1em 0;
+    text-indent: 0.3em;
+}

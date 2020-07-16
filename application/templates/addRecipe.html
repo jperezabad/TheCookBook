@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+<!-- HEAD -->
+{% block head %}
+{% if recipe is none %}
+<title>TheCookBook: Add a new recipe</title>
+{% else %}
+<title>Editing {{recipe.title}}</title>
+{% endif %}
+<script src="https://kit.fontawesome.com/f8c45113b8.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/addRecipe.css') }}">
+<script src="{{url_for('static', filename='js/addRecipe.js') }}"></script>
+<script src="{{url_for('static', filename='js/imgur.js') }}"></script>
+{% endblock %}
+
+<!-- NAV ITEMS -->
+{% block specificNavItems %}
+
+{% endblock %}
+
+<!-- PAGE CONTENT -->
+{% block page_content %}
+
+    <h1>Create a new recipe</h1>
+
+    <div class="form">
+
+        <fieldset>
+            <legend><div class="number">1</div> Recipe info</legend>
+            
+            <div class="vertical">
+                <div class="horizontal">
+                    <i class="fas fa-signature"></i> 
+                    <input type="text" id="recipeName" placeholder="*Recipe name" value="{{recipe.title}}">
+                </div>
+                <div class="horizontal">
+                    <i class="fas fa-hourglass-half"></i>
+                    <input type="number" id="recipeTime" placeholder="*Aproximate time in min" value="{{recipe.time}}" min="0" max="500" step="5">
+                    <i class="fas fa-user"></i>
+                    <input type="number" id="recipePeople" placeholder="*Number of dinners" value="{{recipe.people}}" min="0" max="50">
+                </div>
+                <!-- IMAGE -->
+                {% if recipe is none or recipe.image is none %} 
+                <div class="horizontal">
+                    <i class="fas fa-image"></i>
+                    <input type="ulr" id="imageUrl" placeholder="Image url" onfocusout="showImage()">
+                    <input id="imgurUpload" type="file" accept="image/*" onchange="handleFile(event)" value="Upload image">
+                </div>
+                <img id="image"/>
+                {% else %}
+                <div class="horizontal">
+                    <i class="fas fa-image"></i>
+                    <input type="ulr" id="imageUrl" placeholder="Image url" value="{{recipe.image}}" onfocusout="showImage()">
+                    <input id="imgurUpload" type="file" accept="image/*" onchange="handleFile(event)" value="Upload image">
+                </div>
+                <img id="image" src="{{recipe.image}}" style="display: block;"/>
+                {% endif %}
+                <canvas id="canvas"></canvas>
+                <!-- END IMAGE -->
+                <!-- VIDEO -->
+                {% if recipe is none or recipe.video is none %}
+                <div class="horizontal">
+                    <i class="fas fa-video"></i>
+                    <input type="text" id="videoId" placeholder="Youtube video id" onfocusout="showVideo()">                       
+                </div>
+                <iframe id="video"></iframe>
+                {% else %}
+                <div class="horizontal">
+                    <i class="fas fa-video"></i>
+                    <input type="text" id="videoId" placeholder="Youtube video id" value="{{recipe.video}}" onfocusout="showVideo()">
+                </div>
+                <iframe id="video" src="https://www.youtube.com/embed/{{recipe.video}}" style="display: block;"></iframe>
+                {% endif %}
+                <!-- END VIDEO -->
+                <div id="tags" class="vertical">
+                    {% if recipe is none or recipe.tags is none or recipe.tags|length == 0 %}
+                    <div class="horizontal">
+                        <i class="fas fa-tag"></i>
+                        <input type="text" class="tag" placeholder="Tag 1">
+                        <i class="fas fa-times" onclick="deleteTag()"></i>
+                    </div>
+                    {% else %}
+                        {% for tag in recipe.tags %} 
+                            <div class="horizontal">
+                                <i class="fas fa-tag"></i>
+                                <input type="text" class="tag" placeholder="Tag {{loop.index}}" value="{{tag}}">
+                                <i class="fas fa-times" onclick="deleteTag()"></i>
+                            </div>
+                        {% endfor %} 
+                    {% endif %}
+                </div>
+            </div>
+            <button class="button" onclick="addTag()"><i class="fas fa-plus"></i></button>
+            
+                
+        </fieldset>
+        
+        <fieldset>
+            <legend><span class="number">2</span> Ingredients</legend>
+            
+            <div id="ingredients" class="vertical">
+
+                {% if recipe is none or recipe.ingredients is none %}
+                    <div class="horizontal">
+                        <i class="fas fa-bread-slice"></i>
+                        <input type="number" class="quantity" placeholder="Quantity" min="0">
+                        <input type="text" class="measure" placeholder="Measure">
+                        <input type="text" class="ingredient" placeholder="Ingredient 1">
+                        <i class="fas fa-times" onclick="deleteIngredient()"></i>
+                    </div>
+                {% else %}
+                    {% for ingredient in recipe.ingredients %} 
+                        <div class="horizontal">
+                            <i class="fas fa-bread-slice"></i>
+                            {%if ingredient.quantity is none %}
+                            <input type="number" class="quantity" placeholder="Quantity" min="0">
+                            {% else %}
+                            <input type="number" class="quantity" placeholder="Quantity" value="{{ingredient.quantity}}" min="0">
+                            {% endif %}
+                            {% if ingredient.measure is none %}
+                            <input type="text" class="measure" placeholder="Measure">
+                            {% else %}
+                            <input type="text" class="measure" placeholder="Measure" value="{{ingredient.measure}}">
+                            {% endif %}
+                            <input type="text" class="ingredient" placeholder="Ingredient {{loop.index}}" value="{{ingredient.name}}">
+                            <i class="fas fa-times" onclick="deleteIngredient()"></i>
+                        </div>
+                    {% endfor %} 
+                {% endif %}
+            </div>
+
+            <button class="button" onclick="addIngredient()"><i class="fas fa-plus"></i></button>
+            
+        </fieldset>
+
+    </fieldset>
+        
+    <fieldset>
+        <legend><span class="number">3</span> Directions</legend>
+        
+        <div id="directions" class="vertical">
+
+            {% if recipe is none or recipe.steps is none %}
+            <div class="horizontal">
+                <i class="fas fa-utensils"></i>
+                <input type="text" class="direction" placeholder="Step 1">
+                <i class="fas fa-times" onclick="deleteDirection()"></i>
+            </div>
+            {% else %}
+                {% for step in recipe.steps %} 
+                    <div class="horizontal">
+                        <i class="fas fa-utensils"></i>
+                        <input type="text" class="direction" placeholder="Step {{loop.index}}" value="{{step}}">
+                        <i class="fas fa-times" onclick="deleteDirection()"></i>
+                    </div>
+                {% endfor %} 
+            {% endif %}
+        </div>
+
+        <button class="button" onclick="addDirection()"><i class="fas fa-plus"></i></button>
+        
+    </fieldset> 
+
+    <fieldset>
+        <legend><span class="number">4</span> Adittional information</legend>
+        
+        <div id="infos" class="vertical">
+
+            {% if recipe is none or recipe.info is none or recipe.info|length == 0 %}
+            <div class="horizontal">
+                <i class="fas fa-info"></i>
+                <input type="text" class="info" placeholder="Additional information">
+                <i class="fas fa-times" onclick="deleteInfo()"></i>
+            </div>
+            {% else %}
+                {% for info in recipe.info %} 
+                    <div class="horizontal">
+                        <i class="fas fa-info"></i>
+                        <input type="text" class="info" placeholder="Additional information" value="{{info}}">
+                        <i class="fas fa-times" onclick="deleteInfo()"></i>
+                    </div>
+                {% endfor %} 
+            {% endif %}
+        </div>
+
+        <button class="button" onclick="addInfo()"><i class="fas fa-plus"></i></button>
+        
+    </fieldset> 
+        
+        <div id="container-submit" class="horizontal">
+            <button id="submit" class="button" onclick="submitRecipe('{{recipe.id}}')">Submit</button>
+        </div>
+                
+    </div>
+
+{% endblock %}

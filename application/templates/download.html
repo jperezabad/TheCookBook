@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{recipe.title}}</title>
+        <meta name="pdfkit-margin-left" content="0mm" />
+        <meta name="pdfkit-margin-right" content="0mm" />
+        <meta name="pdfkit-margin-bottom" content="10mm" />
+        <meta name="pdfkit-margin-top" content="0mm" />
+        <script src="https://kit.fontawesome.com/f8c45113b8.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/download.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='icon/favicon.ico') }}">
+    </head>
+    <body>
+
+        <div class="header">
+            <div class="iconTitle">
+                <img id="chefIcon" src="data:;base64,{{ chefIcon }}">
+                <span>TheCookBook</span>
+            </div>
+        </div>
+
+        <div class="content">
+            
+            <h1>{{recipe.title}}</h1>
+
+            <div class="container horizontal">
+                
+                <div class="vertical ingredients">   
+                    
+                    <h2>Ingredientes para {{recipe.people}} personas</h2>
+                
+                    {% for ingredient in recipe.ingredients %}
+                    <div class="horizontal">
+                        <i class="fas fa-bread-slice"></i>
+                        <div class="element">
+                            {% if ingredient.quantity is not none%}{{ingredient.quantity}} {%endif%}
+                            {% if ingredient.measure is not none%}{{ingredient.measure}} de {%endif%} 
+                            {{ingredient.name}}
+                        </div>
+                    </div>
+                    {% endfor %} 
+                </div>
+                {% if recipe.image is not none%}
+                <div class="imageContainer">
+                    <img class="recipeImage" src="{{recipe.image}}"/>
+                </div>
+                {% endif %}
+            </div>
+
+            <h2>Elaboración</h2>
+            <div class="vertical">
+                {% for step in recipe.steps %} 
+                <div class="horizontal">
+                    <i class="fas fa-utensils"></i>
+                    <div class="element">{{step}}</div>
+                </div>
+                {% endfor %} 
+            
+            </div>
+
+            {% if recipe.info|length > 0 %}
+                <h2>Información adicional</h2>
+                <div class="vertical">
+                    {% for info in recipe.info %} 
+                    <div class="horizontal">
+                        <i class="fas fa-info"></i>
+                        <div class="element">{{info}}</div>
+                    </div>
+                    {% endfor %} 
+                </div>
+            {% endif %}
+
+            {% if recipe.video is not none %}
+                <a id='videoLink' href="https://www.youtube.com/watch?v={{recipe.video}}">
+                    Mira la receta en Youtube
+                </a>
+            {% endif %}
+        
+            <div class="horizontal contributor">
+                <img class="profileAvatar" src="{{recipe.user.image}}">
+                Una receta de {{recipe.user.name}}
+            </div>
+    
+        </div>
+
+    </body>
+</html>
