@@ -1,5 +1,9 @@
 /* CSS FOR THE ENTIRE SITE */
 
+html {
+    height: 100%;
+}
+
 body {
     min-height: 100%;
     height: 100%;
@@ -28,13 +32,13 @@ a {
     height: 100%;
     flex-grow: 1;
     align-items: stretch;
+    overflow: auto;
 }
 
 .page-content{
     padding: 2em;
     flex-grow: 1;
     text-align: center;
-    overflow: auto;
     min-width: 36em;
 }
 
@@ -63,10 +67,13 @@ input[type='submit'], .button {
 /* CSS FOR THE NAVBAR */
 
 .navbar {
+    align-self: flex-start;
     position: sticky;
+    position: -webkit-sticky;
     top: 0;
     width: fit-content;
-    height: 100%;
+    height: fit-content;
+    min-height: 100%;
     align-items: stretch;
     min-width: 18em;
     background-color: #1abc83;
