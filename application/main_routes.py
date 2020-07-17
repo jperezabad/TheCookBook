@@ -49,6 +49,7 @@ def recipe(recipeID):
 @login_required
 def editRecipe(recipeID):
     recipe = Recipe.objects(id=recipeID).first()
+    if recipe.user.id != current_user.id: return redirect(url_for("main.home"))
     if not recipe:
         abort(404)
     return render_template('addRecipe.html', recipe=recipe)

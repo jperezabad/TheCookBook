@@ -9,12 +9,14 @@
 
 <!-- NAV ITEMS -->
 {% block specificNavItems %}
+{% if recipe.user.id == current_user.id %}
 <a class="navItem" href="{{recipe.id}}/edit">
     <div class="horizontal navItemInner">
         Edit recipe
         <img class="navIcon" src="/static/icon/kitchen.png" >
     </div>
 </a>
+{% endif %}
 <a class="navItem" href="{{recipe.id}}/download" target="_blank">
     <div class="horizontal navItemInner">
         Download recipe
