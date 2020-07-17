@@ -30,9 +30,9 @@
                 </a>                
                 {% else %}
                 <a class="navItem" href="/user-profile">
-                    <div class="horizontal navItemInner">
-                        {{current_user.username}}
+                    <div class="horizontal navItemUser">
                         <img class="navIcon" src="/static/icon/chef_white.png" >
+                        <div class="username">{{current_user.username}}</div>
                     </div>
                 </a>
                 {% endif %}

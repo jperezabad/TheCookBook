@@ -100,10 +100,20 @@ input[type='submit'], .button {
     border-top: 1px solid white;
 }
 
+
+
 .navItemInner {
     align-items: center;
     justify-content: space-between;
     margin: 0 2em;
+}
+
+.navItemUser {
+    justify-content: center;
+}
+
+.username {
+    margin-left: 0.5em;
 }
 
 .navIcon {
