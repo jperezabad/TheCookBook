@@ -37,9 +37,10 @@ a {
 
 .page-content{
     padding: 2em;
+    height: fit-content;
     flex-grow: 1;
     text-align: center;
-    min-width: 36em;
+    min-width: 45em;
 }
 
 input[type='submit'], .button {
@@ -99,8 +100,6 @@ input[type='submit'], .button {
 .lastItem {
     border-top: 1px solid white;
 }
-
-
 
 .navItemInner {
     align-items: center;
