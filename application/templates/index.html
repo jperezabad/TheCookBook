@@ -2,6 +2,7 @@
 
 <!-- HEAD -->
 {% block head %}
+<title>TheCookBook</title>
 <script src="https://kit.fontawesome.com/f8c45113b8.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 {% endblock %}
@@ -55,7 +56,7 @@
                 {% endif %}
                 <div class="recipeInfo vertical">
                     <div class="recipeName">{{recipe.title}}</div>
-                    <div class="recipeTimeDiv"><i class="fas fa-hourglass-half"></i><div class="recipeTime">{{recipe.time}} min</div></div>
+                    <div class="recipeTimeDiv"><i class="fas fa-clock"></i><div class="recipeTime">{{recipe.time}} min</div></div>
                 </div>
             </div>
             {% endfor %}
