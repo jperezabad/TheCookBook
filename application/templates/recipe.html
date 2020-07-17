@@ -51,7 +51,7 @@
                 <h2>Ingredientes para {{recipe.people}} personas</h2>
             
                 {% for ingredient in recipe.ingredients %}
-                <div class="horizontal">
+                <div class="horizontal item">
                     <i class="fas fa-bread-slice"></i>
                     <div class="element">
                         {% if ingredient.quantity is not none%}{{ingredient.quantity}} {%endif%}
@@ -73,7 +73,7 @@
         <h2>Elaboración</h2>
         <div class="vertical">
             {% for step in recipe.steps %} 
-            <div class="horizontal">
+            <div class="horizontal item">
                 <i class="fas fa-utensils"></i>
                 <div class="element">{{step}}</div>
             </div>
@@ -85,7 +85,7 @@
             <h2>Información adicional</h2>
             <div class="vertical">
                 {% for info in recipe.info %} 
-                <div class="horizontal">
+                <div class="horizontal item">
                     <i class="fas fa-info"></i>
                     <div class="element">{{info}}</div>
                 </div>

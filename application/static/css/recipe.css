@@ -57,6 +57,12 @@ h2 {
     align-items: stretch;
 }
 
+.item {
+    align-items: baseline;
+    margin-bottom: 1em;
+    text-align: start;
+}
+
 .ingredients {
     width: fit-content;
     flex: 1 0 auto;
